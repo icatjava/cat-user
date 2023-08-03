@@ -1,6 +1,7 @@
 package cloud.ffeng.user.app.command.service.impl;
 
 import cloud.ffeng.cat.common.util.AssertUtil;
+import cloud.ffeng.cat.common.util.FuncUtil;
 import cloud.ffeng.user.app.command.assembler.UserLoginAssembler;
 import cloud.ffeng.user.app.command.service.UserLoginAppService;
 import cloud.ffeng.user.domain.platform.repository.PlatformAuthRepository;
@@ -112,15 +113,8 @@ public class UserLoginAppServiceImpl implements UserLoginAppService {
 
         // 外部平台用户查询对应用户信息
         User user = userRepository.get(platformUser.getPlatform(), platformUser.getPlatformUserId());
-        if (Objects.isNull(user)) {
-            // 如果没有这个用户，那么就直接按照新用户创建
-            User newUser = UserFactory.createUser(platformUser);
-            user = userDomainService.createNewUser(newUser);
-        }
-
-        // 执行登录逻辑：生成流水 + Session信息
-        boolean userLoginLock = CacheHelper.lock(USER_LOGIN, user.getUserId().toString());
-        AssertUtil.isTrue(userLoginLock, U_USER_LOGIN_CONCURRENTLY, "用户同时登录不被许可！");
+        // 如果外部平台用户第一次登录就默认执行创建新用户逻辑
+        user = FuncUtil.nullGet(user, () -> userDomainService.createNewUser(platformUser));
 
         // 用户开始执行登录操作
         UserLoginFlow userLoginFlow = userLoginDomainService.start(user.getUserId(), PASSWORD);

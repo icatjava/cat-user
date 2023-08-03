@@ -24,4 +24,13 @@ public interface UserRepository {
     User getByLoginKey(String loginKey);
 
     User get(String platform, String platformUserId);
+
+
+    /**
+     * 保存一个用户
+     *
+     * @param user 用户
+     * @return user
+     */
+    User save(User user);
 }

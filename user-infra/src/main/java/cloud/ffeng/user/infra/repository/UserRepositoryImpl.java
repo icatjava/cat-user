@@ -28,4 +28,9 @@ public class UserRepositoryImpl implements UserRepository {
         return new User();
     }
 
+    @Override
+    public User save(User user) {
+        return null;
+    }
+
 }

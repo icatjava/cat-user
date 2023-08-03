@@ -18,9 +18,9 @@ public class UserLoginFactory {
      * 创建一个新的登录流水信息
      *
      * @param loginMethod 登录方式
-     * @return
+     * @return 新的流水记录
      */
-    public UserLoginFlow createUserLoginFlow(Long userId, UserLoginMethodEnum loginMethod) {
+    public UserLoginFlow buildUserLoginFlow(Long userId, UserLoginMethodEnum loginMethod) {
         return new UserLoginFlow(
                 1L,
                 "sessionId",

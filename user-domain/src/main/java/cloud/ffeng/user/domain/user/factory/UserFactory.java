@@ -1,9 +1,12 @@
 package cloud.ffeng.user.domain.user.factory;
 
+import cloud.ffeng.cat.common.util.UuidUtil;
 import cloud.ffeng.user.domain.base.component.SequenceGenerator;
 import cloud.ffeng.user.domain.base.enums.SequenceType;
 import cloud.ffeng.user.domain.platform.entity.PlatformUser;
 import cloud.ffeng.user.domain.user.entity.User;
+
+import java.time.LocalDateTime;
 
 import static cloud.ffeng.user.common.util.IdCheckUtil.computeCheckSum;
 
@@ -40,8 +43,19 @@ public final class UserFactory {
         return waitCheckNum + checkSum;
     }
 
-    public static User createUser(PlatformUser platformUser) {
-        return new User();
+    public static User buildNewUser(PlatformUser platformUser) {
+        // 生成一个用户ID
+        Long userId = UserFactory.generateUserId();
+
+        // 构建一个用户信息
+        return new User(userId,
+                "CAT_" + UuidUtil.generateUuid(),
+                null,
+                null,
+                platformUser.getNickname(),
+                UuidUtil.generateUuid(),
+                LocalDateTime.now(),
+                LocalDateTime.now());
     }
 
 }

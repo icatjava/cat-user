@@ -10,6 +10,7 @@ public class PlatformUser {
     private String platformUserId;
 
     private String platform;
+    private String nickname;
 
     public String uniqueKey() {
         return platform + platformUserId;

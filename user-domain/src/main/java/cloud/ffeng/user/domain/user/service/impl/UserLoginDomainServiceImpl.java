@@ -28,12 +28,17 @@ public class UserLoginDomainServiceImpl implements UserLoginDomainService {
         // 记录变更时间
         userLoginFlow.recordUpdateTime();
 
+        // 保存登录记录信息
         return userLoginRepository.save(userLoginFlow);
     }
 
     @Override
     public UserLoginFlow start(Long userId, UserLoginMethodEnum loginMethod) {
-        return userLoginFactory.createUserLoginFlow(userId, loginMethod);
+        // 构建一个新登录记录
+        UserLoginFlow userLoginFlow = userLoginFactory.buildUserLoginFlow(userId, loginMethod);
+
+        // 保存
+        return userLoginRepository.save(userLoginFlow);
     }
 
 }
