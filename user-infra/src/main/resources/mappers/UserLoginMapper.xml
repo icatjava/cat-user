@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="" ?>
+
+<mapper xmlns="http://mybatis.org/schema/mybatis-mapper">
+    <resultMap id="resultMap" type="cloud.ffeng.user.infra.dal.dataobj.UserLoginDO">
+
+    </resultMap>
+
+
+    <sql id="fields">
+
+    </sql>
+
+    <select id="select" resultMap="resultMap">
+        select <include refid="fields"/> from cat_user_flow where xxxx
+    </select>
+
+    <insert id="insert"></insert>
+</mapper>

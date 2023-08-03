@@ -1,0 +1,1 @@
+package cloud.ffeng.user.domain.platform;
