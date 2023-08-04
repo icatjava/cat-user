@@ -1,5 +1,6 @@
 package cloud.ffeng.user.infra.repository;
 
+import cloud.ffeng.user.common.enums.PlatformEnum;
 import cloud.ffeng.user.domain.user.entity.User;
 import cloud.ffeng.user.domain.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User get(String platform, String platformUserId) {
+    public User get(PlatformEnum platform, String platformUserId) {
         return new User();
     }
 

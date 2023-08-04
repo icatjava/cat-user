@@ -1,5 +1,6 @@
 package cloud.ffeng.user.domain.user.repository;
 
+import cloud.ffeng.user.common.enums.PlatformEnum;
 import cloud.ffeng.user.domain.user.entity.User;
 
 /**
@@ -23,7 +24,7 @@ public interface UserRepository {
      */
     User getByLoginKey(String loginKey);
 
-    User get(String platform, String platformUserId);
+    User get(PlatformEnum platform, String platformUserId);
 
 
     /**

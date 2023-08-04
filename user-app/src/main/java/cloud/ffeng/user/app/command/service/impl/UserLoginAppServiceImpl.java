@@ -4,13 +4,12 @@ import cloud.ffeng.cat.common.util.AssertUtil;
 import cloud.ffeng.cat.common.util.FuncUtil;
 import cloud.ffeng.user.app.command.assembler.UserLoginAssembler;
 import cloud.ffeng.user.app.command.service.UserLoginAppService;
-import cloud.ffeng.user.domain.platform.repository.PlatformAuthRepository;
 import cloud.ffeng.user.domain.base.component.CacheHelper;
 import cloud.ffeng.user.domain.platform.aggregate.PlatformAuthFlow;
 import cloud.ffeng.user.domain.platform.entity.PlatformUser;
+import cloud.ffeng.user.domain.platform.repository.PlatformAuthRepository;
 import cloud.ffeng.user.domain.user.aggregate.UserLoginFlow;
 import cloud.ffeng.user.domain.user.entity.User;
-import cloud.ffeng.user.domain.user.factory.UserFactory;
 import cloud.ffeng.user.domain.user.repository.UserLoginRepository;
 import cloud.ffeng.user.domain.user.repository.UserRepository;
 import cloud.ffeng.user.domain.user.service.UserDomainService;
@@ -24,8 +23,7 @@ import cloud.ffeng.user.facade.request.UserLoginByVerificationRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
+import org.springframework.transaction.annotation.Transactional;
 
 import static cloud.ffeng.user.common.constants.BizStatusConstants.*;
 import static cloud.ffeng.user.common.enums.UserLoginMethodEnum.PASSWORD;
@@ -101,6 +99,7 @@ public class UserLoginAppServiceImpl implements UserLoginAppService {
     }
 
     @Override
+    @Transactional(rollbackFor = Throwable.class)
     public UserLoginFlowDTO loginByPlatformAuth(UserLoginByPlatformAuthRequest request) {
         // 确认登录的授权流水存在
         PlatformAuthFlow platformAuthFlow = platformAuthRepository.get(request.getPlatformAuthFlowId());

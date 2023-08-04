@@ -18,4 +18,14 @@ public class PlatformAuthRepositoryImpl implements PlatformAuthRepository {
         return new PlatformAuthFlow();
     }
 
+
+    @Override
+    public PlatformAuthFlow save(PlatformAuthFlow platformAuthFlow) {
+        // countByUniqueKey() > 0
+        //  update
+        //   < 1
+        //  insert
+        return null;
+    }
+
 }

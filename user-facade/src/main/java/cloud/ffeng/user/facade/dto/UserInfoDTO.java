@@ -3,13 +3,12 @@ package cloud.ffeng.user.facade.dto;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * @author cat-feng
  */
 @Data
-public class UserDTO implements Serializable {
+public class UserInfoDTO implements Serializable {
     private static final long serialVersionUID = 2810296049005357546L;
 
     /**

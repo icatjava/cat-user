@@ -13,7 +13,7 @@ public enum VerificationMethodEnum {
     EMAIL(200, "EMAIL", "邮箱"),
     PICTURE(300, "PICTURE", "图片"),
     ;
-    private final int status;
+    private final int type;
     private final String code;
     private final String desc;
 }

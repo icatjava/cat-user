@@ -23,6 +23,5 @@
             <groupId>cloud.ffeng</groupId>
             <artifactId>cat-common</artifactId>
         </dependency>
-
     </dependencies>
 </project>
