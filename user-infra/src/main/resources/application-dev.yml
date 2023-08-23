@@ -1,0 +1,3 @@
+MYSQL_URL: jdbc:mysql://10.11.11.123:3306/cat_user?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=utf8
+MYSQL_USERNAME: root
+MYSQL_PASSWORD: 123456

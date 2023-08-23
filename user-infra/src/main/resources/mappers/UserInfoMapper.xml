@@ -1,6 +1,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cloud.ffeng.user.infra.dal.dao.UserLoginDAO"
->
+<mapper namespace="cloud.ffeng.user.infra.dal.dao.UserInfoDAO">
 
     <sql id="columns">
         t.`user_id`, t.`username`, t.`phone`, t.`email`, t.`encrypted_pwd`, t.`nickname`, t.`avatar_url`,

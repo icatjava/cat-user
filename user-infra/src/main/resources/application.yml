@@ -1,19 +1,16 @@
 # Server Config
 server:
-  port: 8800
+  port: ${SERVER_PORT:8888}
 # Spring Config
 spring:
   datasource:
-    driver-class-name:
-    hikari:
-      schema: classpath:db/schema-h2.sql
-      driver-class-name: org.h2.Driver
-      jdbc-url: jdbc:h2:mem:h2
-      username: root
-      password: 123
+    url: ${MYSQL_URL}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+  profiles:
+    active: ${ENV:dev}
 
 # MyBatis Config
 mybatis:
-  type-aliases-package: cloud.ffeng.user.infra.dal.dao
-  mapper-locations: classpath:/mybatis/*.xml
+  mapper-locations: classpath:/mappers/*.xml
 

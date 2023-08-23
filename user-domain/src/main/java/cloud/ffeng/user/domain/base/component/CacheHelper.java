@@ -6,6 +6,7 @@ import cloud.ffeng.user.domain.base.interfaces.CacheService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Supplier;
