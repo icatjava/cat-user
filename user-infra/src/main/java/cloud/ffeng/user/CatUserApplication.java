@@ -23,7 +23,7 @@ public class CatUserApplication {
     private UserInfoDAO userInfoDAO;
 
     @GetMapping("/testDal")
-    public Map<String, Object> test() {
-        return userInfoDAO.select();
+    public Object test() {
+        return userInfoDAO.selectByPrimaryKey(1L);
     }
 }

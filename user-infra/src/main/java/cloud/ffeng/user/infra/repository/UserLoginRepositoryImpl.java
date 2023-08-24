@@ -3,9 +3,16 @@ package cloud.ffeng.user.infra.repository;
 import cloud.ffeng.user.domain.user.aggregate.UserLoginFlow;
 import cloud.ffeng.user.domain.user.repository.UserLoginRepository;
 import cloud.ffeng.user.infra.dal.dao.UserLoginDAO;
+import cloud.ffeng.user.infra.dal.dataobj.CuUserInfoDO;
+import cloud.ffeng.user.infra.dal.dataobj.CuUserLoginFlowDO;
+import cloud.ffeng.user.infra.repository.convert.UserInfoConvert;
+import cloud.ffeng.user.infra.repository.convert.UserLoginFlowConvert;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * @author cat-feng
@@ -24,15 +31,20 @@ public class UserLoginRepositoryImpl implements UserLoginRepository {
      */
     @Override
     public UserLoginFlow save(UserLoginFlow userLoginFlow) {
-//        userLoginFlow.setGmtModified(new Date());
-
-        if (userLoginDAO.countById(userLoginFlow.getLoginFlowId()) > 0) {
-//            update
-        } else {
-//            userLoginFlow.setGmtCreate(new Date());
-//            userLoginDAO.insert(userLoginFlow);
+        CuUserLoginFlowDO cuUserLoginFlowDO = UserLoginFlowConvert.toDO(userLoginFlow);
+        if (Objects.isNull(cuUserLoginFlowDO)) {
+            return null;
         }
 
-        return userLoginFlow;
+        if (userLoginDAO.countByUserLoginFlowId(cuUserLoginFlowDO.getUserId()) > 0) {
+            cuUserLoginFlowDO.setUpdateTime(LocalDateTime.now().withNano(0));
+            userLoginDAO.updateByPrimaryKey(cuUserLoginFlowDO);
+        } else {
+            cuUserLoginFlowDO.setCreateTime(LocalDateTime.now().withNano(0));
+            cuUserLoginFlowDO.setUpdateTime(LocalDateTime.now().withNano(0));
+            userLoginDAO.insert(cuUserLoginFlowDO);
+        }
+
+        return UserLoginFlowConvert.toEntity(cuUserLoginFlowDO);
     }
 }

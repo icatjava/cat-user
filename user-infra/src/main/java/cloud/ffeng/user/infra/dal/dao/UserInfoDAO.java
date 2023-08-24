@@ -1,16 +1,25 @@
 package cloud.ffeng.user.infra.dal.dao;
 
+import cloud.ffeng.user.infra.dal.dataobj.CuUserInfoDO;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.Map;
-
-/**
- * @author cat-feng
- */
 @Mapper
 public interface UserInfoDAO {
 
-    Map<String, Object> select();
+    int deleteByPrimaryKey(Long userId);
 
-    int countById(Long loginFlowId);
+    int insert(CuUserInfoDO record);
+
+    int updateByPrimaryKey(CuUserInfoDO record);
+
+    int countByUserId(Long userId);
+
+    CuUserInfoDO selectByPrimaryKey(Long userId);
+
+    CuUserInfoDO selectByEmail(String email);
+
+    CuUserInfoDO selectByUsername(String username);
+
+    CuUserInfoDO selectByPhone(String phone);
+
 }

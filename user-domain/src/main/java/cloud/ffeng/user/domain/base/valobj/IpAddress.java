@@ -14,4 +14,7 @@ public class IpAddress {
     String ip;
 
 
+    public static IpAddress of(String ip) {
+        return null;
+    }
 }

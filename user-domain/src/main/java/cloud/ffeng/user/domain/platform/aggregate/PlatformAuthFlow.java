@@ -1,10 +1,8 @@
 package cloud.ffeng.user.domain.platform.aggregate;
 
 import cloud.ffeng.user.common.enums.*;
-import cloud.ffeng.user.domain.base.valobj.IpAddress;
 import cloud.ffeng.user.domain.platform.valobj.PlatformAuthByCode;
 import cloud.ffeng.user.domain.platform.valobj.PlatformConfig;
-import cloud.ffeng.user.domain.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

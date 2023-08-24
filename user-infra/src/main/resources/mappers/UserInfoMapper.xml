@@ -1,23 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cloud.ffeng.user.infra.dal.dao.UserInfoDAO">
+    <resultMap id="BaseResultMap" type="cloud.ffeng.user.infra.dal.dataobj.CuUserInfoDO">
+        <id column="user_id" jdbcType="BIGINT" property="userId" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="encrypted_pwd" jdbcType="VARCHAR" property="encryptedPwd" />
+        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+        <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
 
     <sql id="columns">
-        t.`user_id`, t.`username`, t.`phone`, t.`email`, t.`encrypted_pwd`, t.`nickname`, t.`avatar_url`,
-        t.`create_time`, t.`update_time`
+        user_id, username, phone, email, encrypted_pwd,
+        nickname, avatar_url, create_time, update_time
     </sql>
 
-    <sql id="table">
-        `cu_user_info` t
-    </sql>
-
-    <select id="select" resultType="java.util.Map">
-        select <include refid="columns"/>
-        from <include refid="table"/>
+    <select id="countByUserId" resultMap="BaseResultMap">
+        select
+        count(*)
+        from cu_user_info
+        where user_id = #{userId,jdbcType=BIGINT}
     </select>
 
-    <select id="countById" resultType="int">
-        select count(*)
-        from <include refid="table"/>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="columns" />
+        from cu_user_info
+        where user_id = #{userId,jdbcType=BIGINT}
     </select>
 
+    <select id="selectByUsername" resultMap="BaseResultMap">
+        select
+        <include refid="columns" />
+        from cu_user_info
+        where username = #{username,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByEmail" resultMap="BaseResultMap">
+        select
+        <include refid="columns" />
+        from cu_user_info
+        where email = #{email,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByPhone" resultMap="BaseResultMap">
+        select
+        <include refid="columns" />
+        from cu_user_info
+        where phone = #{phone,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from cu_user_info
+        where user_id = #{userId,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="cloud.ffeng.user.infra.dal.dataobj.CuUserInfoDO">
+        insert into cu_user_info (username, phone, email,encrypted_pwd, nickname, avatar_url, create_time, update_time)
+        values (#{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+                #{encryptedPwd,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="cloud.ffeng.user.infra.dal.dataobj.CuUserInfoDO">
+        update cu_user_info
+        set username = #{username,jdbcType=VARCHAR},
+            phone = #{phone,jdbcType=VARCHAR},
+            email = #{email,jdbcType=VARCHAR},
+            encrypted_pwd = #{encryptedPwd,jdbcType=VARCHAR},
+            nickname = #{nickname,jdbcType=VARCHAR},
+            avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where user_id = #{userId,jdbcType=BIGINT}
+    </update>
 </mapper>

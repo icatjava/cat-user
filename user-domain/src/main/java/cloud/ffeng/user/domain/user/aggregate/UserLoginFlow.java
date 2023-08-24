@@ -3,7 +3,6 @@ package cloud.ffeng.user.domain.user.aggregate;
 import cloud.ffeng.user.common.enums.UserLoginMethodEnum;
 import cloud.ffeng.user.common.enums.UserLoginStatusEnum;
 import cloud.ffeng.user.domain.base.valobj.IpAddress;
-import cloud.ffeng.user.domain.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -21,17 +20,17 @@ public class UserLoginFlow {
     /**
      * 登录流水ID
      */
-    private Long loginFlowId;
-
-    /**
-     * sessionId
-     */
-    private String sessionId;
+    private Long userLoginFlowId;
 
     /**
      * 当前登录用户ID
      */
     private Long userId;
+
+    /**
+     * sessionId
+     */
+    private String sessionId;
 
     /**
      * 登录IP地址

@@ -29,6 +29,6 @@ public interface UserRegisterAppService {
      * @param request 邮箱/手机验证码注册用户请求
      * @return 用户信息
      */
-    UserInfoDTO registerByUsername(@Valid UserRegisterByVerificationRequest request);
+    UserInfoDTO registerByVerification(@Valid UserRegisterByVerificationRequest request);
 
 }

@@ -1,7 +1,7 @@
 package cloud.ffeng.user.domain.user.service;
 
 import cloud.ffeng.user.domain.platform.entity.PlatformUser;
-import cloud.ffeng.user.domain.user.entity.User;
+import cloud.ffeng.user.domain.user.entity.UserInfo;
 
 /**
  * @author cat-feng
@@ -14,5 +14,5 @@ public interface UserDomainService {
      * @param user 待创建用户
      * @return 创建完成的用户
      */
-    User createNewUser(PlatformUser user);
+    UserInfo createNewUser(PlatformUser user);
 }

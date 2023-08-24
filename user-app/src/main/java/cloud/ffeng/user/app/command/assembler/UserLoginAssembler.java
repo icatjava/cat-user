@@ -10,7 +10,7 @@ public class UserLoginAssembler {
 
     public static UserLoginFlowDTO toDTO(UserLoginFlow userLoginFlow) {
         UserLoginFlowDTO userLoginFlowDTO = new UserLoginFlowDTO();
-        userLoginFlowDTO.setLoginFlowId(String.valueOf(userLoginFlow.getLoginFlowId()));
+        userLoginFlowDTO.setLoginFlowId(String.valueOf(userLoginFlow.getUserLoginFlowId()));
         return userLoginFlowDTO;
     }
 }

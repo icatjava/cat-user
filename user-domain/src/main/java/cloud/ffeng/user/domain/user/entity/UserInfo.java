@@ -1,14 +1,10 @@
 package cloud.ffeng.user.domain.user.entity;
 
-import cloud.ffeng.user.domain.base.component.SequenceGenerator;
-import cloud.ffeng.user.domain.base.enums.SequenceType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-
-import static cloud.ffeng.user.common.util.IdCheckUtil.computeCheckSum;
 
 /**
  * @author cat-feng
@@ -16,7 +12,7 @@ import static cloud.ffeng.user.common.util.IdCheckUtil.computeCheckSum;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserInfo {
 
     /**
      * UID
@@ -36,18 +32,24 @@ public class User {
     /**
      * 手机号
      */
-    private String mobile;
+    private String phone;
 
+    /**
+     * 密码（已加密）
+     */
+    private String encryptedPwd;
     /**
      * 昵称
      */
     private String nickname;
+    /**
+     * 头像地址：OSS
+     */
+    private String avatarUrl;
 
     /**
-     * 密码
+     * 创建及更新时间
      */
-    private String password;
-
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 

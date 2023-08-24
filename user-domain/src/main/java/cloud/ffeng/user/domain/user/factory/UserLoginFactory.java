@@ -23,8 +23,8 @@ public class UserLoginFactory {
     public UserLoginFlow buildUserLoginFlow(Long userId, UserLoginMethodEnum loginMethod) {
         return new UserLoginFlow(
                 1L,
-                "sessionId",
                 userId,
+                "sessionId",
                 new IpAddress(""),
                 loginMethod,
                 UserLoginStatusEnum.INIT,
