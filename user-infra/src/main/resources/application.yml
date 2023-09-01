@@ -3,14 +3,39 @@ server:
   port: ${SERVER_PORT:8888}
 # Spring Config
 spring:
+  application:
+    name: cat-user
   datasource:
     url: ${MYSQL_URL}
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   profiles:
     active: ${ENV:dev}
-
-# MyBatis Config
 mybatis:
   mapper-locations: classpath:/mappers/*.xml
+
+# Dubbo Config
+dubbo:
+  scan:
+    base-packages: cloud.ffeng.user.infra.facade
+  application:
+    name: ${spring.application.name}
+  protocol:
+    name: dubbo
+    serialization: hessian2
+    port: 20880
+  provider:
+    retries: 0
+  consumer:
+    timeout: 5000
+    check: false
+    retries: 3
+  registry:
+    address: ${DUBBO_REGISTRY_ADDRESS}
+logging:
+  level:
+    'org.apache.zookeeper.ZooKeeper': warn
+    'com.alibaba.spring.*': warn
+    'org.apache.*': warn
+    'org.apache.dubbo.config.bootstrap.DubboBootstrap': info
 
